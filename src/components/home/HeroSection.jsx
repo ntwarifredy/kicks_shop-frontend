@@ -20,10 +20,10 @@ const HeroSection = () => {
   }, []);
 
   const displayProducts = products.length >= 4 ? products : [
-    { name: 'Premium Sneaker', images: ['/api/placeholder?text=👟+Premium+Sneaker&w=200&h=200'], price: 4999 },
-    { name: 'Classic Trainer', images: ['/api/placeholder?text=👟+Classic+Trainer&w=200&h=200'], price: 5999 },
-    { name: 'Sport Runner', images: ['/api/placeholder?text=👟+Sport+Runner&w=200&h=200'], price: 7999 },
-    { name: 'Street Style', images: ['/api/placeholder?text=👟+Street+Style&w=200&h=200'], price: 6499 },
+    { name: 'Premium Sneaker', images: [placeholderImg(200, 200, 'Premium Sneaker')], price: 4999 },
+    { name: 'Classic Trainer', images: [placeholderImg(200, 200, 'Classic Trainer')], price: 5999 },
+    { name: 'Sport Runner', images: [placeholderImg(200, 200, 'Sport Runner')], price: 7999 },
+    { name: 'Street Style', images: [placeholderImg(200, 200, 'Street Style')], price: 6499 },
   ];
 
   return (
