@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="96" height="96" viewBox="0 0 96 96" fill="none">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="96" y2="96" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FF6A00"/>
+      <stop offset="1" stop-color="#f97316"/>
+    </linearGradient>
+  </defs>
+  <!-- Rounded square background with gradient -->
+  <rect width="96" height="96" rx="20" fill="url(#bg)"/>
+  <!-- Sneaker silhouette -->
+  <g fill="#fff">
+    <!-- Sole -->
+    <path d="M10 70c0-5 4-8 9-8h52c6 0 11 3 13 7l2 4c0 3-1 5-4 7l-10 5c-3 1-6 2-9 2H31c-4 0-8-1-11-2l-7-4c-2-2-3-4-3-7v-4z"/>
+    <!-- Upper / body -->
+    <path d="M30 62 16 43c-1-2 0-5 2-6l3-2c3-1 6-1 8 2l18 22c2 2 2 6 0 8l-2 1c-2 2-5 2-7 0l-8-6z"/>
+    <!-- Heel -->
+    <path d="M19 42c-2-4-2-9 0-13l3 1c-1 4-1 8 0 11l-3 1z"/>
+    <!-- Ankle -->
+    <path d="M26 36c-1-4 0-8 2-12l3 1c-2 3-3 6-2 10l-3 1z"/>
+    <!-- Lace / tongue detail -->
+    <path d="M44 40c0-4 2-7 4-10l2 1c-1 2-3 5-3 8l-3 1z"/>
+    <!-- Brand stripe -->
+    <path d="M56 50c2-2 5-3 9-3l4 1c1 1 2 2 1 3l-1 1c-2 1-5 2-7 1l-6-3z" opacity=".25"/>
+  </g>
+</svg>
