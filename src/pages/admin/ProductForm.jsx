@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import API from '../../api/axios';
+import { uploadMultipleToCloudinary } from '../../utils/cloudinary';
 import Loader from '../../components/common/Loader';
 import Message from '../../components/common/Message';
 import toast from 'react-hot-toast';
@@ -97,24 +98,28 @@ const AdminProductForm = () => {
         const rand = Math.random().toString(36).substring(2, 6).toUpperCase();
         data.sku = `${prefix}-${ts}${rand}`;
       }
-      data.gender = data.gender.toLowerCase();
+      data.gender = (data.gender || 'unisex').toLowerCase();
 
-      const formData = new FormData();
-      Object.entries(data).forEach(([key, value]) => {
-        if (key === 'sizes' || key === 'color') {
-          formData.append(key, value.join(','));
-        } else {
-          formData.append(key, value);
-        }
-      });
-      existingImages.forEach((url) => formData.append('existingImages', url));
-      images.forEach((file) => formData.append('images', file));
+      let imageUrls = [];
+      if (images.length > 0) {
+        toast.loading('Uploading images...');
+        imageUrls = await uploadMultipleToCloudinary(images, (pct) => {
+          toast.loading(`Uploading images... ${pct}%`);
+        });
+        toast.dismiss();
+      }
+
+      const payload = {
+        ...data,
+        existingImages,
+        imageUrls,
+      };
 
       if (isEdit) {
-        await API.put(`/products/${id}`, formData);
+        await API.put(`/products/${id}`, payload);
         toast.success('Product updated!');
       } else {
-        await API.post('/products', formData);
+        await API.post('/products', payload);
         toast.success('Product created!');
       }
       navigate('/admin/products');

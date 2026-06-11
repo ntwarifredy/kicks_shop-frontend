@@ -5,6 +5,7 @@ import API from '../api/axios';
 import Loader from '../components/common/Loader';
 import Message from '../components/common/Message';
 import { formatPrice, getDate } from '../utils/helpers';
+import { uploadToCloudinary } from '../utils/cloudinary';
 import toast from 'react-hot-toast';
 import { HiOutlineCamera } from 'react-icons/hi';
 
@@ -42,9 +43,8 @@ const Profile = () => {
     if (!file) return;
     setUploading(true);
     try {
-      const formData = new FormData();
-      formData.append('avatar', file);
-      const { data: response } = await API.put('/auth/avatar', formData);
+      const avatarUrl = await uploadToCloudinary(file);
+      const { data: response } = await API.put('/auth/avatar', { avatarUrl });
       await loadUser();
       toast.success('Avatar updated!');
     } catch (err) {
